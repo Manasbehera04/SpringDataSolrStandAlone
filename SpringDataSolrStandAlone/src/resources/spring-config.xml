@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:solr="http://www.springframework.org/schema/data/solr"
+	xsi:schemaLocation="http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/data/solr https://www.springframework.org/schema/data/solr/spring-solr-4.0.xsd
+		http://www.springframework.org/schema/cache https://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+	<solr:repositories base-package="com.jcg.examples.repo" />
+
+	<!-- Define HTTP Solr server -->
+	<solr:solr-client id="solrServer" url="http://localhost:8983/solr" />
+
+	<!-- Define Solr template -->
+	<bean id="solrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+		<constructor-arg ref="solrServer" />
+	</bean>
+</beans>
